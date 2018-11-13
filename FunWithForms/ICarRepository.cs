@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FunWithForms.Models;
 
-namespace FunWithForms
+namespace FunWithForms//FunWithAndrey
 {
     public interface ICarRepository
     {
@@ -12,5 +12,6 @@ namespace FunWithForms
         IEnumerable<Car> GetAll();
         Car GetById(int id);
         void Delete(int carId);
+        void Update(Car car);
     }
 }
