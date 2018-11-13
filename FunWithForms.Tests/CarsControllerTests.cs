@@ -10,7 +10,7 @@ namespace FunWithForms.Tests
     public class CarsControllerTests
     {
         [Fact]
-        public void Post_And_Saves()
+        public void Create_And_Saves()
         {
             var car = new Car();
             var carRepo = Substitute.For<ICarRepository>();
