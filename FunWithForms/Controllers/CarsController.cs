@@ -16,6 +16,12 @@ namespace FunWithForms.Controllers
             this.carRepo = carRepo;
         }
 
+        public IActionResult Index()
+        {
+            var cars = carRepo.GetAll();
+            return View(cars);
+        }
+
         public IActionResult Create()
         {
             return View();
@@ -25,7 +31,27 @@ namespace FunWithForms.Controllers
         public IActionResult Create(Car newCar)
         {
             carRepo.Create(newCar);
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(int id)
+        {
+            var car = carRepo.GetById(id);
+            return View(car);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var car = carRepo.GetById(id);
+            return View(car);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]        
+        public IActionResult DeletePost(int id)
+        {
+            carRepo.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

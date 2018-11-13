@@ -9,5 +9,8 @@ namespace FunWithForms
     public interface ICarRepository
     {
         void Create(Car car);
+        IEnumerable<Car> GetAll();
+        Car GetById(int id);
+        void Delete(int carId);
     }
 }

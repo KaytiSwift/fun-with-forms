@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FunWithForms.Models
+namespace FunWithForms.Repositories
 {
     public class Repository<T>
     where T : class
@@ -36,6 +36,12 @@ namespace FunWithForms.Models
         {
             db.Set<T>().Remove(entity);
             db.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var entity = GetById(id);
+            Delete(entity);
         }
 
         public void Save()
