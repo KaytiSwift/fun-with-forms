@@ -109,5 +109,37 @@ namespace FunWithForms.Tests
 
             Assert.Same("Index", redirctResult.ActionName);
         }
+
+        [Fact]
+        public void Update_Passes_Existing_Car_To_View()
+        {
+            var carId = 42;
+            var expectedCar = new Car();
+            carRepo.GetById(carId).Returns(expectedCar);
+
+            var result = underTest.Edit(carId);
+            var model = ((ViewResult)result).Model;
+
+            Assert.Same(expectedCar, model);
+        }
+
+        [Fact]
+        public void Edit_Saves_Updated_Car()
+        {
+            underTest.Edit(car);
+
+            carRepo.Received().Update(car);
+        }
+
+        [Fact]
+        public void Edit_Redirects_To_Index()
+        {
+            var result = underTest.Edit(car);
+
+            //Assert.IsType<RedirectToActionResult>(result);
+            var redirctResult = (RedirectToActionResult)result;
+
+            Assert.Same("Index", redirctResult.ActionName);
+        }
     }
 }

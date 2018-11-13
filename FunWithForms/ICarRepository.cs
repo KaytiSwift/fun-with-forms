@@ -12,5 +12,6 @@ namespace FunWithForms//FunWithAndrey
         IEnumerable<Car> GetAll();
         Car GetById(int id);
         void Delete(int carId);
+        void Update(Car car);
     }
 }
